@@ -1,6 +1,7 @@
 import React from 'react';
 import { Deck, Heading, Slide, Text, List, ListItem, BlockQuote, Quote, Cite, Image, Appear, Layout, Fit, Fill, Notes } from 'spectacle';
 import createTheme from 'spectacle/lib/themes/default';
+import Terminal from "spectacle-terminal";
 
 const theme = createTheme(
   {
@@ -165,6 +166,12 @@ export default class Presentation extends React.Component {
           <Heading>The Industrial Revolution</Heading>
           <Image src={images.indRev} alt="An image showing explorers" />
         </Slide>
+        <Slide>
+            <Terminal title="rsween@rsween-win10:/c/dev/software-process-talk" output={[
+              "git push",
+              ]}
+            />
+          </Slide>
       </Deck>
     );
   }
