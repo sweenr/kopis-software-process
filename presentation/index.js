@@ -1,7 +1,7 @@
 import React from 'react';
-import { Deck, Heading, Slide, Text, List, ListItem, BlockQuote, Quote, Cite, Image, Appear, Layout, Fit, Fill, Notes } from 'spectacle';
+import { Deck, Heading, Slide, Text, List, ListItem, Image, Appear, Notes } from 'spectacle';
 import createTheme from 'spectacle/lib/themes/default';
-import Terminal from "spectacle-terminal";
+import Terminal from 'spectacle-terminal';
 
 const theme = createTheme(
   {
@@ -32,7 +32,8 @@ const images = {
   digitalScrum: require('../assets/digital-scrum.png'),
   burndown: require('../assets/burndown.png'),
   exploration: require('../assets/exploration.png'),
-  indRev: require('../assets/industrial-revolution.jpg')
+  indRev: require('../assets/industrial-revolution.jpg'),
+  cicd: require('../assets/cicd.png')
 };
 
 export default class Presentation extends React.Component {
@@ -44,10 +45,10 @@ export default class Presentation extends React.Component {
           <Text>How we make cool things fast!</Text>
           <Appear>
             <Text>Alt: Learn from our mistakes!</Text>
-          </Appear>          
+          </Appear>
         </Slide>
         <Slide>
-          <Heading size='3'>KM Engineering as Historical Periods</Heading>
+          <Heading size="3">KM Engineering as Historical Periods</Heading>
           <List>
             <ListItem>The Dark Ages</ListItem>
             <ListItem>The Rennaissance</ListItem>
@@ -59,7 +60,7 @@ export default class Presentation extends React.Component {
           <Appear>
             <div>
               <Heading>Caveman Times</Heading>
-              <Image src={images.caveman} alt="Spongebob, Patrick, and Squidward celebrating the discovery of git" /> 
+              <Image src={images.caveman} alt="Spongebob, Patrick, and Squidward celebrating the discovery of git" />
             </div>
           </Appear>
         </Slide>
@@ -99,11 +100,11 @@ export default class Presentation extends React.Component {
               <li>Several on-and-off attempts at starting scrum workflow before really commiting late 2017.</li>
               <li>Traditional agile/scrum "didn't work for us", at least that's what we told ourselves.</li>
               <li>Multiple challenges:</li>
-                <ul>
-                  <li>Multiple products/contracts but one team</li>
-                  <li>Deliverables were usually contract driven not customer driven</li>
-                  <li>Limited customer interaction at best - hard to react to feedback</li>
-                </ul>
+              <ul>
+                <li>Multiple products/contracts but one team</li>
+                <li>Deliverables were usually contract driven not customer driven</li>
+                <li>Limited customer interaction at best - hard to react to feedback</li>
+              </ul>
               <li>These challenges almost kept us from realizing the power behind scrum.</li>
             </ul>
           </Notes>
@@ -167,11 +168,54 @@ export default class Presentation extends React.Component {
           <Image src={images.indRev} alt="An image showing explorers" />
         </Slide>
         <Slide>
-            <Terminal title="rsween@rsween-win10:/c/dev/software-process-talk" output={[
-              "git push",
-              ]}
-            />
-          </Slide>
+          <Notes>
+            <h3>A better way...</h3>
+            <ul>
+              <li>So typically, when you push your files to GitHub or GitLab, that's all that happens - your files are sent to a remote server to be shared with your fellow developers.</li>
+              <li>But what if I told you there was a way for magical robot workers to take the code you commited, build your app, run tests, and even deploy it to the App Store or Google Play?</li>
+            </ul>
+          </Notes>
+          <Terminal title="rsween@rsween-win10" output={[
+            'git push',
+            <div key="git-result-1">
+              <div>Counting objects: 4, done.</div>
+              <div>Delta compression using up to 8 threads.</div>
+              <div>Compressing objects: 100% (3/3), done.</div>
+              <div>Writing objects: 100% (4/4), 487 bytes | 243.00 KiB/s, done.</div>
+              <div>Total 4 (delta 2), reused 0 (delta 0)</div>
+            </div>,
+            <div key="git-result-2">
+              <div>To git.kopismobile.org:rsween/software-process-talk.git</div>
+              <div>   5c845e3..dfa86c4  master -> master</div>
+            </div>
+          ]}
+          />
+        </Slide>
+        <Slide>
+          <Notes>
+            <h3>What is CI/CD</h3>
+            <ul>
+              <li>CI stands for Continuous Integration - constantly taking git commits and making sure they work together, often paired with</li>
+              <li>CD or Continuous Deployment - given code that is properly integrated and tested, automate the deployment of the product, whether it's a mobile app, web site, or other piece of software.</li>
+            </ul>
+          </Notes>
+          <Appear><Text>Continuous</Text></Appear>
+          <Appear><Text>Integration</Text></Appear>
+          <Appear><Text>/</Text></Appear>
+          <Appear><Text>Continuous</Text></Appear>
+          <Appear><Text>Deployment</Text></Appear>
+        </Slide>
+        <Slide>
+          <Notes>
+            <h3>Gitlab CI/CD</h3>
+            <ul>
+              <li>GitLab offers a build in solution for handling CI/CD pipelines - even their free hosted plans offer access to shared runners that will build and test your code.</li>
+              <li>Since we self-host GitLab internally, we also run our own fleet of runners to build all of our products from PIC firmware to mobile apps and web sites.</li>
+              <li>As you can see in the image, this was a good pipeline! The app built and deployed successfully.</li>
+            </ul>
+          </Notes>
+          <Image src={images.cicd} alt="Image showing the CI/CD pipeline for a Kopis Mobile project" />
+        </Slide>
       </Deck>
     );
   }

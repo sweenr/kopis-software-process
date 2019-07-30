@@ -1,0 +1,21 @@
+image: node:10.16
+
+before_script:
+  - npm install
+
+test:
+  stage: test
+  script:
+    - npm run lint
+
+pages:
+  stage: deploy
+  script:
+    - npm run build
+    - mkdir public
+    - cp -r dist public/
+    - cp -r index.html public/
+  artifacts:
+    paths:
+      - public
+  only: master
