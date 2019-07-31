@@ -89,6 +89,9 @@ module.exports = {
         }
       }],
       include: path.join(__dirname, 'assets')
-    }]
+    }, {
+      test: /\.txt$/i,
+      use: 'raw-loader',
+    },]
   }
 };
