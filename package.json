@@ -1,7 +1,7 @@
 {
-  "name": "spectacle-boilerplate",
+  "name": "software-process-talk",
   "version": "1.0.1",
-  "description": "ReactJS Powered Presentation Framework",
+  "description": "Talk for JAWAD on Kopis Software Process, powered by Spectacle",
   "main": "lib/index.js",
   "scripts": {
     "build": "npm run clean & cross-env NODE_ENV=production webpack --config webpack.config.production.js",
@@ -11,7 +11,7 @@
     "lint": "eslint --ext .js,.jsx .",
     "start": "cross-env NODE_ENV=development node server.js"
   },
-  "author": "Formidable Labs <hello@formidable.com> (https://formidable.com)",
+  "author": "Richard Sween <rsween@kopismobile.com> (https://kopismobile.com)",
   "license": "MIT",
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
